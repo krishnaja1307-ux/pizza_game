@@ -44,7 +44,7 @@ wedges, _ = ax.pie(
     wedgeprops={"edgecolor": "saddlebrown", "linewidth": 2}  # 🍕 crust effect
 )
 
-ax.set_title("🍕 Click below to eat a slice!")
+ax.set_title(" Click below to eat a slice!")
 
 # --- Add toppings (small red dots for pepperoni look) ---
 for w in wedges:
@@ -77,3 +77,4 @@ if remaining > 0:
     st.write(f"Fraction left = {remaining}/{st.session_state.total_slices} = {remaining/st.session_state.total_slices:.2f}")
 else:
     st.subheader("No pizza left! 😭")
+
