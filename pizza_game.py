@@ -73,11 +73,13 @@ with col1:
             if i < st.session_state.total_slices and i in st.session_state.remaining_slices:
                 if col.button(f"Eat Slice {i+1}", key=f"slice_{i}"):
                     eat_slice(i)
+                    st.rerun()
 
 with col2:
     # New button: Eat one random slice
     if st.button("Eat 1 Slice 🍴"):
         eat_one_random()
+        st.rerun()
 
 # --- Show remaining fraction ---
 remaining = len(st.session_state.remaining_slices)
@@ -86,6 +88,7 @@ if remaining > 0:
     st.write(f"Fraction left = {remaining}/{st.session_state.total_slices} = {remaining/st.session_state.total_slices:.2f}")
 else:
     st.subheader("No pizza left! 😭")
+
 
 
 
