@@ -59,11 +59,18 @@ st.pyplot(fig)
 col1, col2 = st.columns(2)
 
 with col1:
-    # One button for each slice
-    for i in range(st.session_state.total_slices):
-        if i in st.session_state.remaining_slices:
-            if st.button(f"Eat Slice {i+1}", key=f"slice_{i}"):
+  # Buttons for each slice (arranged in 2 rows of 4)
+num_cols = 4  # 4 buttons per row
+rows = st.session_state.total_slices // num_cols
+
+for r in range(rows):
+    cols = st.columns(num_cols)
+    for c, col in enumerate(cols):
+        i = r * num_cols + c
+        if i < st.session_state.total_slices and i in st.session_state.remaining_slices:
+            if col.button(f"Eat Slice {i+1}", key=f"slice_{i}"):
                 eat_slice(i)
+
 
 with col2:
     # New button: Eat one random slice
@@ -77,4 +84,5 @@ if remaining > 0:
     st.write(f"Fraction left = {remaining}/{st.session_state.total_slices} = {remaining/st.session_state.total_slices:.2f}")
 else:
     st.subheader("No pizza left! 😭")
+
 
